@@ -39,6 +39,7 @@ static inline int heap_insert(struct heap_##type *heap, type *el) \
 		heap->top = realloc(heap->top, (heap->n + 1) * sizeof(type));				\
 		if (!heap->top)																\
 			return -1;																\
+		heap->size++;																\
 	}																				\
 	if (heap->n == 1) {															\
 		memcpy(&heap->top[1], el, sizeof(type));									\
@@ -48,7 +49,6 @@ static inline int heap_insert(struct heap_##type *heap, type *el) \
 		memcpy(&heap->top[i], &heap->top[i / 2], sizeof(type));						\
 	}				\
 	memcpy(&heap->top[i], el, sizeof(type));										\
-	heap->size++;																	\
 	return 0; 																		\
 } \
 static inline int heap_peek(struct heap_##type *heap, type *first) \
