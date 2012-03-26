@@ -45,7 +45,7 @@ static inline int heap_insert(struct heap_##type *heap, type *el) \
 		memcpy(&heap->top[1], el, sizeof(type));									\
 		return 0;																	\
 	}																				\
-	for (i = heap->n; heap->top[i / 2].orderby > el->orderby; i /= 2) {			\
+	for (i = heap->n; (i > 1) && (heap->top[i / 2].orderby > el->orderby; i /= 2)) {			\
 		memcpy(&heap->top[i], &heap->top[i / 2], sizeof(type));						\
 	}				\
 	memcpy(&heap->top[i], el, sizeof(type));										\
