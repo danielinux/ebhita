@@ -95,6 +95,10 @@ static inline int heap_delete(struct heap_##type *heap, type *like)             
                 break;                                                                  \
         }                                                                               \
     }                                                                                   \
+    if (found == 1) {                                                                   \
+        (void)heap_peek(heap, &temp);                                                   \
+        return 0;                                                                       \
+    }                                                                                   \
     if (found) {                                                                        \
         last = &heap->top[heap->n--];                                                   \
         memcpy(&heap->top[found], last, sizeof(type));                                  \
